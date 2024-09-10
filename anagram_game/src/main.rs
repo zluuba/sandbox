@@ -9,16 +9,25 @@ use scrambler::Scrambler;
 use word_library::Library;
 
 
+/// you can easily change word_library/scrambler/ui classes 
+/// without any loss in functionality.
+/// for example:
+///     changing this line:  let ui = Box::new(ui::SimpleUI);
+///     to this line:        let ui = Box::new(ui::PrettifyUI);
+/// switches the app's UI, but the interface stays the same 
+/// (thanks to the base `GameUI` trait).
+
+
 fn main() {
     let word_library = Box::new(word_library::SimpleWordLibrary);
     let scrambler = Box::new(scrambler::ShuffleScrambler);
     let ui = Box::new(ui::SimpleUI);
 
-    let anagrams = constructor::AnagramsConstructor::new(
+    let anagrams = constructor::AnagramsConstructor {
         word_library, 
         scrambler, 
         ui,
-    );
+    };
 
     anagrams.ui.show_rules();
 

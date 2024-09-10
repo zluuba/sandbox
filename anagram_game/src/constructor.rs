@@ -9,18 +9,28 @@ pub struct AnagramsConstructor {
     pub ui: Box<dyn GameUI>,
 }
 
-impl AnagramsConstructor {
-    pub fn new(word_library: Box<dyn Library>, 
-            scrambler: Box<dyn Scrambler>, 
-            ui: Box<dyn GameUI>) -> Self {
-        AnagramsConstructor { word_library, scrambler, ui }
-    }
+// impl AnagramsConstructor {
+//     fn get_word_library(&self) -> &dyn Library {
+//         &*self.word_library
+//     }
 
-    // fn get_word_library(&self) -> &dyn Library {
-    //     &*self.word_library
-    // }
+//     fn set_word_library(&mut self, new_word_library: Box<dyn Library>) {
+//         self.word_library = new_word_library;
+//     }
 
-    // fn get_scrambler(&self) -> &dyn Scrambler {
-    //     &*self.scrambler
-    // }
-}
+//     fn get_scrambler(&self) -> &dyn Scrambler {
+//         &*self.scrambler
+//     }
+
+//     fn set_scrambler(&mut self, new_scrambler: Box<dyn Scrambler>) {
+//         self.scrambler = new_scrambler;
+//     }
+
+//     fn get_ui(&self) -> &dyn GameUI {
+//         &*self.ui
+//     }
+
+//     fn set_ui(&mut self, new_ui: Box<dyn GameUI>) {
+//         self.ui = new_ui;
+//     }
+// }
