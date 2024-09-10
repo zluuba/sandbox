@@ -1,0 +1,6 @@
+# VSCode, MacOS files
+.vscode/
+.DS_Store
+
+# Rust compiled data
+*/target
