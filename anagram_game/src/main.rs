@@ -15,7 +15,7 @@ use word_library::Library;
 ///     changing this line:  let ui = Box::new(ui::SimpleUI);
 ///     to this line:        let ui = Box::new(ui::PrettifyUI);
 /// switches the app's UI, but the interface stays the same 
-/// (thanks to the base `GameUI` trait).
+/// ('cause of `GameUI` trait)
 
 
 fn main() {
