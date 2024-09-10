@@ -1,4 +1,11 @@
+mod icon;
+mod image;
+mod lookup;
+mod modified;
+mod content;
+
+
 fn main() {
-    // TODO: write explanations what i did and why
-    println!("test");
+    // non interactive structure
+    println!();
 }

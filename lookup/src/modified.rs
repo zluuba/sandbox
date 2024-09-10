@@ -3,7 +3,10 @@ trait Modified {
     fn discard(&self);
 }
 
-struct ModifiedImpl for Modified {
+
+pub struct ModifiedImpl;
+
+impl Modified for ModifiedImpl {
     fn save(&self) {
         // save somehow
     }

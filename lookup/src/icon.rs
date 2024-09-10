@@ -1,33 +1,44 @@
+use crate::lookup::AbstractLookup;
+use crate::content::InstanceContent;
+use crate::modified::ModifiedImpl;
+
+
+pub struct Component;
+pub struct Graphics;
+
+
 // extends Icon, Lookup.Provider ??
-trait ExtIcon {
-    fn paint_icon(&self, c: Component, g: Graphics, x: i32, y: i32);
+pub trait ExtIcon {
+    fn new(&self) -> Box<&dyn ExtIcon>;
+    fn paint_icon(&self, c: Option<Component>, g: Graphics, x: i32, y: i32);
     fn get_icon_width(&self) -> u32;
     fn get_icon_height(&self) -> u32;
-
-    fn get_lookup(&self) -> Lookup;
+    fn mark_modified(&self);
+    fn get_lookup(&self) -> Box<AbstractLookup>;
 }
 
 
-struct ModifiableIcon for ExtIcon {
-    lookup: Box<dyn AbstractLookup>,
-    ic: Box<dyn InstanceContent>,
+struct ModifiableIcon {
+    lookup: Box<&AbstractLookup>,
+    ic: Box<&InstanceContent>,
 }
 
-impl ModifiableIcon {
-    pub fn new() -> Self {
-        let ic = InstanceContent();
-        let lookup = AbstractLookup(ic);
+impl ExtIcon for ModifiableIcon {
+    fn new(&self) -> Self {
+        let ic = InstanceContent;
+        let lookup = AbstractLookup;
 
-        ModifiableIcon { ic, lookup }
+        ModifiableIcon { ic: Box::new(&ic), lookup: Box::new(&lookup) }
     }
 
-    pub get_lookup(&self) {
+    fn get_lookup(&self) -> &AbstractLookup {
         &*self.lookup
     }
 
-    pub mark_modified(&self) {
-        if self.lookup(&self) == None {
-            self.ic.add(ModifiedImpl());
+    fn mark_modified(&self) {
+        if self.lookup.lookup(&self) == None {
+            // self.ic.add(ModifiedImpl);
+            self.ic.add();
         }
     }
 }
