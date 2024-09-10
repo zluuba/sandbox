@@ -6,6 +6,5 @@ mod content;
 
 
 fn main() {
-    // non interactive structure
-    println!();
+    // think a way to interact with the modules interactively
 }
