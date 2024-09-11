@@ -38,9 +38,11 @@ fn main() {
         anagrams.ui.show_anagram(&anagram);
 
         let user_answer = anagrams.ui.get_user_answer();
-        let is_user_win = user_answer == word;
 
-        anagrams.ui.show_results(is_user_win, word);
+        match user_answer == word {
+            true => anagrams.ui.show_user_win(),
+            false => anagrams.ui.show_user_loss(&word),
+        }
 
         println!();
     }

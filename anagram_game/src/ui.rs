@@ -4,8 +4,8 @@ use std::io;
 pub trait GameUI {
     fn show_rules(&self);
 
-    fn show_anagram(&self, word: &String) {
-        println!("Anagram: {word}");
+    fn show_anagram(&self, anagram: &String) {
+        println!("Anagram: {anagram}");
     }
 
     fn get_user_answer(&self) -> String {
@@ -19,12 +19,12 @@ pub trait GameUI {
         guess.trim().to_string()
     }
 
-    fn show_results(&self, is_user_win: bool, correct_word: String) {
-        if is_user_win {
-            println!("That's right, you won!");
-        } else {
-            println!("No :( The right answer is: {correct_word}");
-        }
+    fn show_user_win(&self) {
+        println!("That's right, you won!");
+    }
+
+    fn show_user_loss(&self, correct_word: &str) {
+        println!("No :( The right answer is: {correct_word}");
     }
 }
 
