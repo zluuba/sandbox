@@ -2,7 +2,9 @@ use std::io;
 
 
 pub trait GameUI {
-    fn show_rules(&self);
+    fn show_rules(&self) {
+        println!("Hi there. Decode the anagram and send it back to me.");
+    }
 
     fn show_anagram(&self, anagram: &String) {
         println!("Anagram: {anagram}");
@@ -24,18 +26,17 @@ pub trait GameUI {
     }
 
     fn show_user_loss(&self, correct_word: &str) {
-        println!("No :( The right answer is: {correct_word}");
+        println!("No :( The right answer is: {correct_word}.");
+    }
+
+    fn show_new_line(&self) {
+        println!();
     }
 }
 
 
 pub struct SimpleUI;
-
-impl GameUI for SimpleUI {
-    fn show_rules(&self) {
-        println!("Hi there. Decode the anagram and send it back to me.");    
-    }
-}
+impl GameUI for SimpleUI {}
 
 
 pub struct PrettifyUI;
@@ -43,7 +44,7 @@ pub struct PrettifyUI;
 impl GameUI for PrettifyUI {
     fn show_rules(&self) {
         println!("Hello, let's play the Anagram Game!");
-        println!("I'll give you the anagram of a word, and you should decode it and send it back.");
+        println!("Decode the anagram and send it back to me.");
         println!("Leeet's go!");
     }
 }

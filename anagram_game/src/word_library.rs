@@ -1,24 +1,23 @@
-use rand::seq::SliceRandom;
-
-use crate::constants::SIMPLE_WORDS;
-use crate::constants::COMPLICATED_WORDS;
+use crate::constants::{SIMPLE_WORDS, COMPLICATED_WORDS};
+use crate::errors::EmptyVecError;
+use crate::utils::get_word_from_vec;
 
 
 pub trait Library {
-    fn get_word(&self) -> String;
+    fn get_word(&self) -> Result<String, EmptyVecError>;
 }
 
 
 pub struct SimpleWordLibrary;
 
 impl Library for SimpleWordLibrary {
-    fn get_word(&self) -> String {
-        // easy level
-        let word: Vec<_> = SIMPLE_WORDS
-            .choose_multiple(&mut rand::thread_rng(), 1)
-            .collect();
+    fn get_word(&self) -> Result<String, EmptyVecError> {
+        let word = get_word_from_vec(SIMPLE_WORDS.to_vec());
 
-        word.iter().map(|s| **s).collect()
+        match word {
+            Some(w) => Ok(w),
+            None => Err(EmptyVecError),
+        }
     }
 }
 
@@ -26,12 +25,12 @@ impl Library for SimpleWordLibrary {
 pub struct ComplicatedWordLibrary;
 
 impl Library for ComplicatedWordLibrary {
-    fn get_word(&self) -> String {
-        // hard level
-        let word: Vec<_> = COMPLICATED_WORDS
-            .choose_multiple(&mut rand::thread_rng(), 1)
-            .collect();
+    fn get_word(&self) -> Result<String, EmptyVecError> {
+        let word = get_word_from_vec(COMPLICATED_WORDS.to_vec());
 
-        word.iter().map(|s| **s).collect()
+        match word {
+            Some(w) => Ok(w),
+            None => Err(EmptyVecError),
+        }
     }
 }
