@@ -10,15 +10,13 @@ pub trait GameUI {
         println!("Anagram: {anagram}");
     }
 
-    fn get_user_answer(&self) -> String {
+    fn get_user_answer(&self) -> Result<String, io::Error> {
         println!("Please, enter the guess: ");
+
         let mut guess = String::new();
+        std::io::stdin().read_line(&mut guess)?;
 
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-
-        guess.trim().to_string()
+        Ok(guess.trim().to_string())
     }
 
     fn show_user_win(&self) {

@@ -25,7 +25,7 @@ impl Anagrams {
             let word = match self.word_library.get_word() {
                 Ok(w) => w,
                 Err(e) => {
-                    println!("Error: {e}");
+                    println!("An error occurred while getting new word: {e}");
                     return
                 },
             };
@@ -33,7 +33,13 @@ impl Anagrams {
 
             self.ui.show_anagram(&anagram);
 
-            let user_answer = self.ui.get_user_answer();
+            let user_answer = match self.ui.get_user_answer() {
+                Ok(ans) => ans,
+                Err(e) => {
+                    println!("An error occurred while reading the line: {e}");
+                    return
+                },
+            };
 
             match user_answer == word {
                 true => self.ui.show_user_win(),
