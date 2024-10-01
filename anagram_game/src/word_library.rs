@@ -12,9 +12,7 @@ pub struct SimpleWordLibrary;
 
 impl Library for SimpleWordLibrary {
     fn get_word(&self) -> Result<String, EmptyVecError> {
-        let word = get_word_from_vec(SIMPLE_WORDS.to_vec());
-
-        match word {
+        match get_word_from_vec(SIMPLE_WORDS.to_vec()) {
             Some(w) => Ok(w),
             None => Err(EmptyVecError),
         }
@@ -26,9 +24,7 @@ pub struct ComplicatedWordLibrary;
 
 impl Library for ComplicatedWordLibrary {
     fn get_word(&self) -> Result<String, EmptyVecError> {
-        let word = get_word_from_vec(COMPLICATED_WORDS.to_vec());
-
-        match word {
+        match get_word_from_vec(COMPLICATED_WORDS.to_vec()) {
             Some(w) => Ok(w),
             None => Err(EmptyVecError),
         }
